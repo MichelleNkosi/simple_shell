@@ -100,3 +100,32 @@ wait(&status);
 }
 return (0);
 }
+
+/**
+*After line 79 We could Split the line into arguments
+*split-line for commands that might eventually take arguments
+*The other suggestion is just to 'avoid' memory leaks
+
+argv = split_line(line);
+
+Execute the command
+if (fork() == 0)
+{
+if (execve(argv[0], argv, environ) == -1)
+{
+perror("./shell");
+exit(EXIT_FAILURE);
+}
+}
+else
+{
+wait(&status);
+}
+Free the allocated memory
+free(argv);
+}
+
+free(line);
+return (0);
+}
+ */
