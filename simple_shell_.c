@@ -60,7 +60,7 @@ while (1)
 {
 /* Display the prompt for user input */
 printf("#cisfun$ ");
- fflush(stdout);
+fflush(stdout);
 
 /* Read the user input */
 nread = getline(&line, &len, stdin);
