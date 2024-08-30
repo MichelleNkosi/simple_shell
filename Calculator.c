@@ -42,7 +42,7 @@ return (0);
  * @num1: First number
  * @num2: Second number
  * @operator: The operator (+, -, *, /)
- * Return: The result of the calculation, 
+ * Return: The result of the calculation,
  * or -1 if an error occurs
  */
 int calculate(int num1, int num2, char operator)
@@ -58,7 +58,7 @@ case '-':
 result = num1 - num2;
 break;
 case '*':
-result = num1 * num2;
+result = num1 *num2;
 break;
 case '/':
 if (num2 == 0)
@@ -103,6 +103,6 @@ return (-1);
 str++;
 }
 
-return (num * sign);
+return (num *sign);
 }
 
