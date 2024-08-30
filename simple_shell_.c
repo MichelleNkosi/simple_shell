@@ -12,7 +12,7 @@
 char **split_line(char *line)
 {
 int bufsize = 64, i = 0;
-char **tokens = malloc(bufsize * sizeof(char *));
+char **tokens = malloc(bufsize *sizeof(char *));
 char *token;
 
 if (!tokens)
@@ -30,62 +30,42 @@ i++;
 if (i >= bufsize)
 {
 bufsize += 64;
-tokens = realloc(tokens, bufsize * sizeof(char *));
+tokens = realloc(tokens, bufsize *sizeof(char *));
 if (!tokens)
 {
 perror("Allocation error");
 exit(EXIT_FAILURE);
 }
 }
-
 token = strtok(NULL, " \t\r\n\a");
 }
 tokens[i] = NULL;
 return (tokens);
 }
+
 /**
- * main - Entry point for the simple shell
- *
- * Return: 0 on success, 1 on error
+ * read_input - Displays the prompt and reads the user input
+ * @line: Pointer to the input line
+ * @len: Pointer to the length of the input line
+ * Return: The number of characters read
  */
-int main(void)
+ssize_t read_input(char **line, size_t *len)
 {
-char *line = NULL;
-char *argv[2];
-size_t len = 0;
-ssize_t nread;
-int status;
-
-while (1)
-{
-/* Display the prompt for user input */
 printf("#cisfun$ ");
- fflush(stdout);
-
-/* Read the user input */
-nread = getline(&line, &len, stdin);
-if (nread == -1)
-{
- /* Handle end of file condition (Ctrl+D) */
-free(line);
-break;
+fflush(stdout);
+return (getline(line, len, stdin));
 }
 
-/* Remove the newline character from the input */
-line[nread - 1] = '\0';
+/**
+ * execute_command - Executes the given command
+ * @argv: The array of arguments
+ */
+void execute_command(char **argv)
+{
+int status;
 
- /* Check if the input is empty */
-if (strlen(line) == 0)
-continue;
-
-
-argv[0] = line;
-argv[1] = NULL;
-
-/* Execute the command */
 if (fork() == 0)
 {
-
 if (execve(argv[0], argv, environ) == -1)
 {
 perror("./shell");
@@ -94,9 +74,46 @@ exit(EXIT_FAILURE);
 }
 else
 {
-
 wait(&status);
 }
 }
+
+/**
+ * main - Entry point for the simple shell
+ * Return: 0 on success, 1 on error
+ */
+int main(void)
+{
+char *line = NULL;
+size_t len = 0;
+ssize_t nread;
+char **argv;
+
+while (1)
+{
+nread = read_input(&line, &len);
+if (nread == -1)
+{
+free(line);
+break;
+}
+
+/* Remove the newline character */
+line[nread - 1] = '\0';
+
+/* Check if the input is empty */
+if (strlen(line) == 0)
+continue;
+
+/* Split the line into arguments */
+argv = split_line(line);
+
+/* Execute the command */
+execute_command(argv);
+
+/* Free the allocated memory */
+free(argv);
+}
+
 return (0);
 }
