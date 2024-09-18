@@ -14,7 +14,7 @@ char *builtin_func_list[] = {
 "help",
 "exit"
 };
-long unsigned int i = 0;
+unsigned long int i = 0;
 (void)(**args);
 
 printf("\n---help collins_michelle_simple_shell---\n");
