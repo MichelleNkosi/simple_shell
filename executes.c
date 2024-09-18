@@ -36,6 +36,6 @@ if (strcmp(args[0], builtin_func_list[i]) == 0)
 return ((*builtin_func[i])(args));
 }
 }
-/* new process */
-return (new_process(args));
+/* new */
+return (new_instances(args));
 }
