@@ -14,7 +14,7 @@ extern char **environ;
 void interactive_option(void);
 void non_interactive_shell(void);
 char *line_reader(void);
-char **line(char *line);
+char **split_line(char *line);
 int execute_args(char **args);
 int new_instances(char **args);
 char *stream_reader(void);

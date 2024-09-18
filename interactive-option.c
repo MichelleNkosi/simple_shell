@@ -14,7 +14,7 @@ int status = -1;
 do {
 printf("simple_prompt$ ");
 line = line_reader();
-args = line(line);
+args = split_line(line);
 status = execute_args(args);
 /* avoid memory leaks */
 free(line);

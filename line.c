@@ -1,12 +1,12 @@
 #include "shell.h"
 
 /**
- *line - split a string into multiple strings
+ *split_line - split a string into multiple strings
  * @line: string to be splited
  *
  * Return: pointer that points to the new array
  */
-char **line(char *line)
+char **split_line(char *line)
 {
 int bufsize = 64;
 int i = 0;
