@@ -18,7 +18,7 @@ int (*builtin_func[])(char **) = {
 &cd,
 &env,
 &helper,
-&exit - state
+&exit_state
 };
 unsigned long int i = 0;
 
