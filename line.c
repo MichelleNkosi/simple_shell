@@ -31,7 +31,7 @@ i++;
 if (i >= bufsize)
 {
 bufsize += bufsize;
-tokens = realloc(tokens, bufsize * sizeof(char *));
+tokens = realloc(tokens, bufsize *sizeof(char *));
 if (!tokens)
 {
 fprintf(stderr, "reallocation issue");
