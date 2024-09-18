@@ -6,7 +6,7 @@
  *
  * Return: 1 if success, 0 failure.
  */
-int new_instance(char **args)
+int new_instances(char **args)
 {
 pid_t pid;
 int status;
