@@ -1,20 +1,21 @@
-#include "main.h"
-#include <stdio.h>
+#include "shell.h"
 
 /**
-* execute_env - Prints the environment variables
-* @argv: The array of arguments (not used)
-* Return: 1 to indicate the shell should continue running
-*/
-int execute_env(char **argv)
+ * env - prints enviroment variables
+ * @args: arguments
+ *
+ * Return: 1 on success, 0 failure
+ */
+int env(char **args)
 {
-char **env = environ;
+int i = 0;
+(void)(**args);
 
-while (*env)
+while (environ[i])
 {
-printf("%s\n", *env);
-env++;
+write(STDOUT_FILENO, environ[i], strlen(environ[i]));
+write(STDOUT_FILENO, "\n", 1);
+i++;
 }
-
-return 1;
+return (-1);
 }
