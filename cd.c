@@ -1,7 +1,7 @@
 #include "shell.h"
 
 /**
- * own_cd - changes the working dir
+ * cd - changes the working dir
  * @args: target directory
  *
  * Return: 1 one success, 0 failure.
