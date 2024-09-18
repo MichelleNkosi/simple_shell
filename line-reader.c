@@ -5,7 +5,7 @@
  *
  * Return: pointer to line content
  */
-char *read_line(void)
+char *line_reader(void)
 {
 char *line = NULL;
 size_t bufsize = 0;
